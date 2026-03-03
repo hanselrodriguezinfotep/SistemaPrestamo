@@ -1,0 +1,104 @@
+{
+  "name": "Credit-Flow — Sistema de Préstamos",
+  "short_name": "CreditFlow",
+  "description": "Sistema completo de gestión de préstamos, clientes, rutas y cobranza",
+  "start_url": "/credit/",
+  "scope": "/credit/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f0a2e",
+  "theme_color": "#5b4ef8",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/credit/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/credit/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/credit/icons/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Dashboard de Credit-Flow en móvil"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuevo Pago",
+      "short_name": "Pago",
+      "description": "Registrar un nuevo pago",
+      "url": "/credit/?s=pagos",
+      "icons": [{"src": "/credit/icons/icon-96.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Clientes",
+      "short_name": "Clientes",
+      "description": "Ver lista de clientes",
+      "url": "/credit/?s=clientes",
+      "icons": [{"src": "/credit/icons/icon-96.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Préstamos",
+      "short_name": "Préstamos",
+      "description": "Ver préstamos activos",
+      "url": "/credit/?s=prestamos",
+      "icons": [{"src": "/credit/icons/icon-96.png", "sizes": "96x96"}]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
+}

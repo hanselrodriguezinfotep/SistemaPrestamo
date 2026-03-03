@@ -1,0 +1,272 @@
+/* ═══════════════════════════════════════════════════════════════
+   searchable-select.css  v3 — Responsive
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Select nativo oculto ────────────────────────────────── */
+.ss-hidden { display: none !important; }
+
+/* ════════════════════════════════════════════════════════════
+   WRAPPER
+════════════════════════════════════════════════════════════ */
+.ss-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+/* ── Contextos flex: heredar flex del parent ── */
+.chip-row          .ss-wrapper,
+.chip-sec-row      .ss-wrapper,
+.asig-docente-chip .ss-wrapper,
+.f-row             .ss-wrapper,
+.filter-bar        .ss-wrapper,
+.fgroup            .ss-wrapper,
+.fg                .ss-wrapper {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TRIGGER (botón visual que reemplaza el select)
+════════════════════════════════════════════════════════════ */
+.ss-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    padding: 7px 10px;
+    border: 1.5px solid var(--border, #e2e8f0);
+    border-radius: 8px;
+    background: var(--surface, #fff);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .84rem;
+    color: var(--text, #1e293b);
+    transition: border-color .15s, box-shadow .15s;
+    box-sizing: border-box;
+    text-align: left;
+    line-height: 1.4;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.ss-trigger:hover {
+    border-color: var(--primary, #1d4ed8);
+    background: #f8faff;
+}
+.ss-trigger.open {
+    border-color: var(--primary, #1d4ed8);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0 0 3px rgba(29,78,216,.08);
+}
+.ss-trigger-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ss-trigger-text.ss-placeholder {
+    color: var(--muted, #94a3b8);
+}
+
+/* Flecha SVG */
+.ss-arrow {
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    transition: transform .2s;
+    color: var(--muted, #94a3b8);
+    opacity: .7;
+}
+.ss-trigger.open .ss-arrow { transform: rotate(180deg); }
+
+/* Feedback visual de cambio pendiente */
+.ss-wrapper.changed .ss-trigger { border-color: #f59e0b !important; background: #fffbeb; }
+
+/* Deshabilitado */
+.ss-wrapper.disabled .ss-trigger { opacity: .55; cursor: not-allowed; pointer-events: none; }
+
+/* ════════════════════════════════════════════════════════════
+   TAMAÑOS POR CONTEXTO
+════════════════════════════════════════════════════════════ */
+
+/* chip-row (asignaciones_grado — cards de asignatura) */
+.chip-row .ss-wrapper .ss-trigger {
+    font-size: .76rem;
+    padding: 4px 7px 4px 8px;
+    border-radius: 7px;
+    min-height: 30px;
+}
+
+/* chip-sec-row / asig-docente-chip (asignaciones.php vista asignatura) */
+.chip-sec-row     .ss-wrapper .ss-trigger,
+.asig-docente-chip .ss-wrapper .ss-trigger {
+    font-size: .74rem;
+    padding: 3px 6px;
+    min-height: 28px;
+}
+
+/* sel-docente — tabla profesor guía (tabla principal) */
+.ss-ctx-docente .ss-trigger {
+    font-size: .84rem;
+    padding: 7px 9px;
+    border-radius: 8px;
+    min-width: 160px;
+}
+
+/* fi / form-select — inputs de formulario modal */
+.ss-ctx-fi .ss-trigger,
+.ss-ctx-form .ss-trigger {
+    font-size: .86rem;
+    padding: 9px 13px;
+    border-radius: 9px;
+}
+
+/* fs — filtros de barra (periodo, nivel) */
+.ss-ctx-fs .ss-trigger {
+    font-size: .84rem;
+    padding: 8px 10px;
+}
+
+/* contacto-row: ancho fijo 140px flex-shrink 0 */
+.contacto-row .ss-wrapper {
+    width: 140px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+.contacto-row .ss-wrapper .ss-trigger {
+    width: 140px;
+    font-size: .84rem;
+    padding: 8px 10px;
+}
+
+/* modal-body genérico (buildForm de institucion, matricula) */
+#modal-body .ss-wrapper        { width: 100%; }
+#modal-body .ss-wrapper .ss-trigger {
+    font-size: .86rem;
+    padding: 9px 13px;
+    border-radius: 9px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   DROPDOWN
+════════════════════════════════════════════════════════════ */
+.ss-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: var(--surface, #fff);
+    border: 1.5px solid var(--primary, #1d4ed8);
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.14);
+    overflow: hidden;
+    animation: ss-in .1s ease;
+    min-width: 180px; /* nunca más angosto que esto */
+}
+.ss-dropdown.visible { display: block; }
+
+@keyframes ss-in {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Buscador ── */
+.ss-search-wrap {
+    position: relative;
+    padding: 7px 8px 5px;
+    border-bottom: 1px solid var(--border, #e2e8f0);
+    background: #f8fafc;
+}
+.ss-search-icon {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .75rem;
+    pointer-events: none;
+    color: var(--muted, #94a3b8);
+}
+.ss-search {
+    width: 100%;
+    padding: 6px 10px 6px 28px;
+    border: 1.5px solid var(--border, #e2e8f0);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: .82rem;
+    background: #fff;
+    color: var(--text, #1e293b);
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color .15s;
+}
+.ss-search:focus { border-color: var(--primary, #1d4ed8); }
+
+/* ── Lista ── */
+.ss-list {
+    max-height: 220px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px 0;
+}
+.ss-list::-webkit-scrollbar       { width: 5px; }
+.ss-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+
+.ss-option {
+    padding: 8px 14px;
+    font-size: .84rem;
+    cursor: pointer;
+    color: var(--text, #1e293b);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background .08s;
+    user-select: none;
+}
+.ss-option:hover             { background: #eff6ff; color: var(--primary, #1d4ed8); }
+.ss-option.selected          { background: #dbeafe; color: #1e40af; font-weight: 700; }
+.ss-option.ss-opt-placeholder{ color: var(--muted, #94a3b8); font-style: italic; }
+.ss-option mark {
+    background: #fef9c3; color: #92400e; font-weight: 700;
+    border-radius: 2px; padding: 0 1px;
+}
+.ss-empty {
+    padding: 14px;
+    text-align: center;
+    font-size: .8rem;
+    color: var(--muted, #94a3b8);
+    font-style: italic;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE
+════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* Dropdown más alto en móvil para evitar scroll */
+    .ss-list { max-height: 180px; }
+
+    /* Trigger más fácil de tocar en móvil */
+    .ss-trigger { min-height: 38px; font-size: .86rem; }
+
+    /* chip-row en móvil */
+    .chip-row .ss-wrapper .ss-trigger {
+        font-size: .8rem;
+        padding: 6px 8px;
+        min-height: 34px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ss-trigger { font-size: .84rem; }
+    .ss-list    { max-height: 160px; }
+}
